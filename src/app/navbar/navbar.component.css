@@ -1,0 +1,12 @@
+.navbar{
+  background: #ffffff;
+  height: 110px;
+  font: 12px Montserrat, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  color: #545454;
+  padding-top:20px;
+}
+
+.navbar-nav.li.a:hover{
+  color: #b31313;
+}

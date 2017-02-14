@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-xs-4 col-md-2">
+    <img [src]="job.companyLogoUrl" alt="..."  style="max-width: 7rem;  max-height: 7rem; margin-top: 12px; ">
+  </div>
+
+  <div class="col-xs-8 col-md-4">
+    <h4>{{job.title}}</h4>
+    <div style="color: #646464;"><b>{{job.companyName}}:</b> {{job.shortDescription}}</div>
+  </div>
+
+  <div class="col-xs-12 visible-xs" style="margin-top: 2rem; text-align: center;">
+    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+    <span style="margin-left: 2rem; ">{{job.locationCityName}}</span>
+  </div>
+  <div class="col-md-3 hidden-xs" style="margin-top: 3.5rem; text-align: left;">
+    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+    <span style="margin-left: 2rem">{{job.locationCityName}}</span>
+  </div>
+
+
+  <div class="col-xs-12 col-md-3" style="margin-top: 3rem; text-align: center; ">
+    <div>
+      <a target="_blank" href="{{job.linkToJobPage}}" type="button" class="btn btn-danger btn-block" style="vertical-align: middle; background-color: #b31313;">{{job.jobType}}</a>
+    </div>
+      <!--
+    <div style="color: #646464; font-size: 0.8em; margin-top: 1rem;">
+      erstellt am {{job.created | date}}
+    </div>
+      -->
+  </div>
+</div>

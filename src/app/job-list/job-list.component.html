@@ -1,0 +1,84 @@
+<ul class="list-group" style="font-family: 'Verdana', sans-serif; color: #333333; margin-top:140px;">
+  <li class="list-group-item justify-content-between" style="background-color: #b31313; color: white;">
+    <h1 style="font-variant: small-caps; text-align: center;"> Pioniergarage Jobwall</h1>
+</li>
+  <li class="list-group-item justify">
+
+    <div class="row" style="word-wrap: break-word;">
+      <div class="col-xs-6 col-md-4">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="checkboxWerkstudentenstelle" (change)="onCheckJobType($event)"> Werkstudentenstellen
+          </label>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-md-4">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"name="checkboxPraktikum" (change)="onCheckJobType($event)"> Praktikum
+          </label>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-md-4">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"name="checkboxThesis" (change)="onCheckJobType($event)"> Thesis
+          </label>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-md-4">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"name="checkboxVollzeitstelle" (change)="onCheckJobType($event)"> Vollzeitstelle
+          </label>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-md-4">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"name="checkboxTeilzeitstelle" (change)="onCheckJobType($event)"> Teilzeitstelle
+          </label>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-md-4">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"name="checkboxMitgründer" (change)="onCheckJobType($event)"> Mitgründer
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-6 col-md-6" >
+        <button type="button" class="btn btn-primary btn-block" style="font-weight: 500;  font-variant: small-caps;"
+                (click)="changeShowStartup()"
+                [style.background-color]="getBgColorShowStartupButton()"
+                [style.color]="getFontColorShowStartupButton()">
+          Show Startups</button>
+      </div>
+      <div class="col-xs-6 col-md-6" >
+        <button type="button" class="btn btn-primary btn-block" style="font-weight: 500;  font-variant: small-caps;"
+                (click)="changeShowCorporate()"
+                [style.background-color]="getBgColorShowCorporateButton()"
+                [style.color]="getFontColorShowCorporateButton()">
+          Show Corporates</button>
+      </div>
+    </div>
+
+  </li>
+  <li class="list-group-item justify"  *ngFor="let job of jobs | jobFilterPipe: filterArgs:showStartup:showCorporate; let i = index;">
+
+    <app-job-item [job]="job"></app-job-item>
+
+
+  </li>
+
+</ul>
