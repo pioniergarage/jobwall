@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 export class HttpService {
 
   private jobUrl = 'http://pioniergarage.infernalmusic.com/jobwall/v3/pg_jobwall.php';
+//  private jobUrl = 'https://pioniergarage.de/wp-json/wpjobwall/v1/job';
 
   constructor(private http: Http) {
   }
