@@ -5,5 +5,13 @@
   <app-navbar></app-navbar>
   <app-job-list *ngIf="!showAdminArea"></app-job-list>
   <app-admin-area *ngIf="showAdminArea"></app-admin-area>
-  <div class="btn btn-default" (click)="toggleToAdminArea()">zum Admin Bereich</div>
-</div> <!-- /container -->
+
+  <div *ngIf="!showAdminArea" class="btn btn-default" (click)="toggleToAdminArea()">
+    zum Admin Bereich
+  </div>
+  
+  <div *ngIf="showAdminArea" class="btn btn-default" (click)="toggleToAdminArea()">
+    zur Jobwall
+  </div>
+
+</div> <!-- / container -->
