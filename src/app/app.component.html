@@ -3,8 +3,7 @@
 
 <div class="container">
   <app-navbar></app-navbar>
-  <app-job-list></app-job-list>
-
+  <app-job-list *ngIf="!showAdminArea"></app-job-list>
+  <app-admin-area *ngIf="showAdminArea"></app-admin-area>
+  <div class="btn btn-default" (click)="toggleToAdminArea()">zum Admin Bereich</div>
 </div> <!-- /container -->
-
-

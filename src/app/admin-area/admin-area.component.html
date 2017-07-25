@@ -1,0 +1,12 @@
+
+<div style="font-family: 'Verdana', sans-serif; color: #333333; margin-top:140px;">
+
+  <app-login *ngIf="!isloggedIn()"></app-login>
+
+  <button *ngIf="isloggedIn()" class="btn btn-default" (click)="logout()">
+    Logout
+  </button>
+
+  <app-job-overview *ngIf="isloggedIn()"></app-job-overview>
+
+</div>

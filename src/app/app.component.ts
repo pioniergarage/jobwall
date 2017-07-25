@@ -8,8 +8,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Wordpress Testapp';
   infoText = "änderbarer Text";
+  showAdminArea = false;
 
   public onClick(text:string){
     this.infoText = text;
+  }
+
+  public toggleToAdminArea(){
+    this.showAdminArea = !this.showAdminArea;
   }
 }

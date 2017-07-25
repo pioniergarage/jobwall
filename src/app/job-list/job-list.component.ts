@@ -19,7 +19,7 @@ export class JobListComponent implements OnInit {
 
     this.jobs = this.getJobs();
 
-    this.httpService.getJoblist()
+    this.httpService.getPublicJoblist()
       .subscribe(jobList=>{
       console.log(jobList);
         this.jobs = jobList;
