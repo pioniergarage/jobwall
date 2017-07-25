@@ -1,1 +1,44 @@
-<app-job-overview-element  *ngFor="let job of jobs" [job]="job"></app-job-overview-element>
+
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th> id </th>
+        <th> title </th>
+        <th> companyName </th>
+        <th> shortDescription </th>
+        <th> Ort </th>
+        <th> jobType </th>
+        <th> isStartup </th>
+        <th> Veröffentlichungs -datum </th>
+        <th> Anzahl Tage Aktiv </th>
+        <th> Aktiv </th>
+        <th> Eingestellt </th>
+        <th> Letztes Update </th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let job of jobs">
+        <!--<app-job-overview-element  [job]="job"></app-job-overview-element>-->
+
+        <td>{{ job.id }}</td>
+        <td><a href ="{{ job.linkToJobPage }}">{{ job.title }} </a></td>
+        <td>{{ job.companyName }}<br><img src="{{ job.companyLogoUrl }}" height="50px"></td>
+        <td>{{ job.shortDescription }}</td>
+        <td>{{ job.locationCityName }}</td>
+        <td>{{ job.jobType }}</td>
+        <td>{{ job.isStartup }}</td>
+        <td>{{ job.publishDate }} </td>
+        <td>{{ job.daysActive }}</td>
+        <td>{{ job.is_active }}</td>
+        <td>{{ job.created }}</td>
+        <td>
+          <div *ngIf="job.updated!='0000-00-00 00:00:00'">{{ job.updated }}</div>
+        </td>
+      </tr>
+
+
+    </tbody>
+  </table>
