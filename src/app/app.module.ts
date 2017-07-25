@@ -16,6 +16,7 @@ import { AdminAreaComponent } from './admin-area/admin-area.component';
 import { JobOverviewComponent } from './admin-area/job-overview/job-overview.component';
 import { JobOverviewElementComponent } from './admin-area/job-overview/job-overview-element/job-overview-element.component';
 import { LoginComponent } from './admin-area/login/login.component';
+import { CreateNewJobComponent } from './admin-area/create-new-job/create-new-job.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LoginComponent } from './admin-area/login/login.component';
     AdminAreaComponent,
     JobOverviewComponent,
     JobOverviewElementComponent,
-    LoginComponent
+    LoginComponent,
+    CreateNewJobComponent
   ],
   imports: [
     BrowserModule,

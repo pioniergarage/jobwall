@@ -9,6 +9,9 @@ import { AuthService } from '../shared/services/auth.service';
 export class AdminAreaComponent implements OnInit {
 
   loggedIn = false;
+  showCreateNewJob = false;
+  showJobOverview = true;
+  showJobDetail = false;
 
   constructor(private authService: AuthService) { }
 
@@ -20,6 +23,12 @@ export class AdminAreaComponent implements OnInit {
   logout(){
     this.authService.logout();
     location.reload();
+  }
+
+  onShowCreateNewJob(){
+    this.showCreateNewJob = true;
+    this.showJobOverview = false;
+    this.showJobDetail = false;
   }
 
 

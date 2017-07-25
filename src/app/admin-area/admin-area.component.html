@@ -1,12 +1,43 @@
 
 <div style="font-family: 'Verdana', sans-serif; color: #333333; margin-top:140px;">
 
+
+  <!-- Not logged In -->
+
   <app-login *ngIf="!isloggedIn()"></app-login>
 
+  <!-- Logged In -->
   <button *ngIf="isloggedIn()" class="btn btn-default" (click)="logout()">
     Logout
   </button>
 
-  <app-job-overview *ngIf="isloggedIn()"></app-job-overview>
+  <!-- Logged In and show Overview -->
+  <div *ngIf="(isloggedIn()==true) &&  (showJobOverview==true)">
+
+    <button class="btn btn-default" (click)="onShowCreateNewJob()">
+      create new Job
+    </button>
+
+    <app-job-overview ></app-job-overview>
+  </div>
+
+
+
+  <!-- Logged In and show Create New Job -->
+
+
+
+  <app-create-new-job *ngIf="(isloggedIn()==true)  && (showCreateNewJob==true)"></app-create-new-job>
+  <!-- Logged In and show Job Details -->
+
+
+
+
+
+
+
+
+
+
 
 </div>
