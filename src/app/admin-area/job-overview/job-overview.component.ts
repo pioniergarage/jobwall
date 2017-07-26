@@ -33,6 +33,28 @@ export class JobOverviewComponent implements OnInit {
     }
 
 
+    removeJob(job){
+
+
+      if (window.confirm("Diesen Job wirklich entgültig löschen?")) { 
+
+
+        console.log("remove: "+job.id);
+
+
+        this.httpService.deleteJob(job.id)
+          .subscribe(deletedJob=>{
+            console.log(deletedJob);
+            this.jobs = this.jobs.filter(item => item !== job);
+        });
+
+
+      }
+
+    }
+
+
+
     setFilterArgs(jobType:string){
       this.filterArgs.push(jobType);
       this.updateNgForJobList();

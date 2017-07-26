@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
     }
 
     login(username:string, password:string){
-      console.log(username+" "+password);
+      //console.log(username+" "+password);
 
       this.authService.login(username, password)
         .subscribe((loggedInUser:LoggedInUser[])=>{
-            console.log(loggedInUser);
+            //console.log(loggedInUser);
 
             localStorage.setItem('jw_token', loggedInUser[0].token);
 

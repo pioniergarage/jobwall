@@ -16,6 +16,7 @@
         <th> Aktiv </th>
         <th> Eingestellt </th>
         <th> Letztes Update </th>
+        <th> </th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +38,7 @@
         <td>
           <div *ngIf="job.updated!='0000-00-00 00:00:00'">{{ job.updated }}</div>
         </td>
+        <td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" (click)="removeJob(job)"></span>
       </tr>
 
 

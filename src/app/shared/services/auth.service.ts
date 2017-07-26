@@ -7,7 +7,14 @@ import { LoggedInUser } from "../interfaces/user";
 @Injectable()
 export class AuthService {
 
-  private loginUrl = 'http://localhost/jobwall-api/v1/login';
+
+
+    private webUrl = "http://pg-api.pioniergarage.de/";
+    private localUrl = "http://localhost/jobwall-api/";
+
+    private usedUrl = this.webUrl;
+
+  private loginUrl = this.usedUrl+'v1/login';
 
   constructor(private http:Http, private generalService:GeneralService) { }
 

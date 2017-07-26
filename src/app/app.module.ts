@@ -18,6 +18,7 @@ import { JobOverviewElementComponent } from './admin-area/job-overview/job-overv
 import { LoginComponent } from './admin-area/login/login.component';
 import { CreateNewJobComponent } from './admin-area/create-new-job/create-new-job.component';
 
+import { DatePickerModule } from 'ng2-datepicker-bootstrap';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CreateNewJobComponent } from './admin-area/create-new-job/create-new-jo
   ],
   imports: [
     BrowserModule,
+    DatePickerModule,
     FormsModule,
     HttpModule
   ],

@@ -3,14 +3,23 @@ import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs";
 import { AuthService } from "./auth.service";
 import { GeneralService } from "./general.service";
+import { Job } from "../classes/job";
 
 @Injectable()
 export class HttpService {
 
-  //private jobUrl = 'http://pioniergarage.infernalmusic.com/jobwall/v3/pg_jobwall.php';
-  private publicJobUrl = 'http://localhost/jobwall-api/v1/public_jobs';
-  private jobUrl = 'http://localhost/jobwall-api/v1/jobs';
-  //  private jobUrl = 'https://pioniergarage.de/wp-json/wpjobwall/v1/job';
+
+
+  private webUrl = "http://pg-api.pioniergarage.de/";
+  private localUrl = "http://localhost/jobwall-api/";
+
+  private usedUrl = this.webUrl;
+
+  //private jobsUrl = 'http://pioniergarage.infernalmusic.com/jobwall/v3/pg_jobwall.php';
+  private publicJobUrl = this.usedUrl+'v1/public_jobs';
+  private jobsUrl = this.usedUrl+'v1/jobs';
+  private jobUrl = this.usedUrl+'v1/job';
+  //  private jobsUrl = 'https://pioniergarage.de/wp-json/wpjobwall/v1/job';
 
   constructor(private http: Http, private authService: AuthService, private generalService: GeneralService) {
   }
@@ -35,10 +44,26 @@ export class HttpService {
 
 
     getJoblist(): Observable<any[]> {
-      return this.http.get(this.jobUrl+"?"+this.authService.getAuthParams())
+      return this.http.get(this.jobsUrl+"?"+this.authService.getAuthParams())
         .map(this.generalService.extractData)
         .catch(this.generalService.handleError);
     }
+
+
+    createNewJob(job:Job): Observable<any[]> {
+      return this.http.post(this.jobUrl+"?"+this.authService.getAuthParams(),job)
+        .map(this.generalService.extractData)
+        .catch(this.generalService.handleError);
+    }
+
+
+    deleteJob(jobId:number): Observable<any[]> {
+      return this.http.delete(this.jobUrl+"/"+jobId+"?"+this.authService.getAuthParams())
+        .map(this.generalService.extractData)
+        .catch(this.generalService.handleError);
+    }
+
+
 
   private extractData(res: Response) {
 
