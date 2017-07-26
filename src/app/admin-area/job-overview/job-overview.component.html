@@ -1,22 +1,18 @@
 
 
 
-<table class="table table-striped">
-    <thead>
+<table class="table table-striped" style="table-layout: fixed;">
+    <thead style="font-size:0.9rem;">
       <tr>
-        <th> </th>
-        <th> Titel </th>
-        <th> Unternehmen </th>
-        <th> Kurzbeschreibung </th>
-        <th> Ort </th>
-        <th> Job Typ </th>
-        <th> isStartup </th>
-        <th> Veröffentlichungs -datum </th>
-        <th> Anzahl Tage Aktiv </th>
-        <th> Aktiv </th>
-        <th> Eingestellt </th>
-        <th> Letztes Update </th>
-        <th> </th>
+        <th class="col-md-2 .col-sm-4"> </th>
+        <th class="col-md-2 .col-sm-4"> </th>
+        <th class="col-md-2 .col-sm-4"> Kurzbeschreibung </th>
+        <th class="col-md-1 .col-sm-2"> Job Typ </th>
+        <th class="col-md-1 .col-sm-2"> Veröffent -lichungs -datum </th>
+        <th class="col-md-1 .col-sm-2"> Anzahl Tage Aktiv </th>
+        <th class="col-md-1 .col-sm-2"> Aktiv </th>
+        <th class="col-md-1 .col-sm-2"> Eingestellt </th>
+        <th class="col-md-1 .col-sm-2"> </th>
       </tr>
     </thead>
     <tbody>
@@ -24,23 +20,52 @@
       <tr *ngFor="let job of jobs; let idx = index">
         <!--<app-job-overview-element  [job]="job"></app-job-overview-element>-->
 
-        <td>{{ job.id }}</td>
-        <td><a href ="{{ job.linkToJobPage }}">{{ job.title }} </a></td>
-        <td>{{ job.companyName }}<br><img src="{{ job.companyLogoUrl }}" height="50px"></td>
-        <td>{{ job.shortDescription }}</td>
-        <td>{{ job.locationCityName }}</td>
-        <td>{{ job.jobType }}</td>
-        <td>{{ job.isStartup }}</td>
-        <td>{{ job.publishDate }} </td>
-        <td>{{ job.daysActive }}</td>
-        <td class="jobActiveCell" (click)="toggleActive(job,idx)">{{ job.is_active }}</td>
-        <td>{{ job.created }}</td>
         <td>
-          <div *ngIf="job.updated!='0000-00-00 00:00:00'">{{ job.updated }}</div>
+          <div>
+            <a href ="{{ job.linkToJobPage }}">{{ job.id }}: {{ job.title }} </a>
+          </div>
+
+          <p></p>
+          <p>{{ job.locationCityName }}</p>
         </td>
         <td>
-          <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" (click)="removeJob(job)">          </span>
-          <span class="glyphicon glyphicon-resize-full" aria-hidden="true" (click)="showJobDetails(job)">       </span>
+
+          <div>
+            <img src="{{ job.companyLogoUrl }}" alt="{{ job.companyName }}_Logo" style="width:120px">
+            <div class="caption">
+              <h4>{{ job.companyName }}</h4>
+              <p *ngIf="job.isStartup==1">Startup</p>
+              <p *ngIf="job.isStartup==0" >kein Startup</p>
+            </div>
+          </div>
+        </td>
+        <td style="font-size:1rem;">{{ job.shortDescription }}</td>
+        <td style="font-size:1rem; font-weight:500;">{{ job.jobType }}</td>
+        <td style="font-size:0.85rem;">{{ job.publishDate }} </td>
+        <td> {{ job.daysActive }}
+
+        </td>
+        <td class="jobActiveCell" (click)="toggleActive(job,idx)">
+          <span *ngIf="job.is_active==1" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          <span *ngIf="job.is_active==0" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </td>
+        <td style="font-size:0.85rem;">
+          <i>Erstellt am:</i><br>
+          {{ job.created }}
+          <br><br>
+          <div *ngIf="job.updated!='0000-00-00 00:00:00'"><i>Updated am:</i><br>{{ job.updated }}</div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-default" style="margin-bottom:2rem;">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"
+            (click)="removeJob(job)"></span>
+          </button>
+
+          <button type="button" class="btn btn-default" style="margin-bottom:2rem;">
+            <span class="glyphicon glyphicon-resize-full" aria-hidden="true"
+            (click)="showJobDetails(job)"></span>
+          </button>
+
       </tr>
 
 
