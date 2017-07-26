@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
+import { Job } from "../shared/classes/job";
 
 @Component({
   selector: 'app-admin-area',
@@ -8,8 +9,12 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class AdminAreaComponent implements OnInit {
 
+  job:Job;
+  emptyJob:Job = new Job();
+
   loggedIn = false;
   showCreateNewJob = false;
+  showUpdateJob = false;
   showJobOverview = true;
   showJobDetail = false;
 
@@ -29,8 +34,24 @@ export class AdminAreaComponent implements OnInit {
     this.showCreateNewJob = true;
     this.showJobOverview = false;
     this.showJobDetail = false;
+    this.showUpdateJob = false;
   }
 
+  onShowJobDetails(job:Job){
+    this.job = job;
+    this.showCreateNewJob = false;
+    this.showJobOverview = false;
+    this.showJobDetail = false;
+    this.showUpdateJob = true;
+  }
+
+
+  onShowJobOverview(job:Job){
+    this.showCreateNewJob = false;
+    this.showJobOverview = true;
+    this.showJobDetail = false;
+    this.showUpdateJob = false;
+  }
 
   ngOnInit() {
   }

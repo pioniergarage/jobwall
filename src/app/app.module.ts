@@ -14,11 +14,9 @@ import { JobListService } from "./job-list/job-list.service";
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminAreaComponent } from './admin-area/admin-area.component';
 import { JobOverviewComponent } from './admin-area/job-overview/job-overview.component';
-import { JobOverviewElementComponent } from './admin-area/job-overview/job-overview-element/job-overview-element.component';
 import { LoginComponent } from './admin-area/login/login.component';
-import { CreateNewJobComponent } from './admin-area/create-new-job/create-new-job.component';
+import { JobDetailComponent } from './admin-area/job-detail/job-detail.component';
 
-import { DatePickerModule } from 'ng2-datepicker-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,13 +27,11 @@ import { DatePickerModule } from 'ng2-datepicker-bootstrap';
     NavbarComponent,
     AdminAreaComponent,
     JobOverviewComponent,
-    JobOverviewElementComponent,
     LoginComponent,
-    CreateNewJobComponent
+    JobDetailComponent
   ],
   imports: [
     BrowserModule,
-    DatePickerModule,
     FormsModule,
     HttpModule
   ],

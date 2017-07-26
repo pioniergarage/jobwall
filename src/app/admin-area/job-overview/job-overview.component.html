@@ -21,7 +21,7 @@
     </thead>
     <tbody>
 
-      <tr *ngFor="let job of jobs">
+      <tr *ngFor="let job of jobs; let idx = index">
         <!--<app-job-overview-element  [job]="job"></app-job-overview-element>-->
 
         <td>{{ job.id }}</td>
@@ -33,12 +33,14 @@
         <td>{{ job.isStartup }}</td>
         <td>{{ job.publishDate }} </td>
         <td>{{ job.daysActive }}</td>
-        <td>{{ job.is_active }}</td>
+        <td class="jobActiveCell" (click)="toggleActive(job,idx)">{{ job.is_active }}</td>
         <td>{{ job.created }}</td>
         <td>
           <div *ngIf="job.updated!='0000-00-00 00:00:00'">{{ job.updated }}</div>
         </td>
-        <td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" (click)="removeJob(job)"></span>
+        <td>
+          <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" (click)="removeJob(job)">          </span>
+          <span class="glyphicon glyphicon-resize-full" aria-hidden="true" (click)="showJobDetails(job)">       </span>
       </tr>
 
 

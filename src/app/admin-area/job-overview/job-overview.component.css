@@ -1,0 +1,7 @@
+.jobActiveCell:hover {
+    background-color: #eeeeee;
+}
+
+.jobActiveCell:active {
+    background-color: #dddddd;
+}

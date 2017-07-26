@@ -1,4 +1,5 @@
 export class Job{
+  id:number;
   title:string;
   companyName:string;
   shortDescription:string;
@@ -9,4 +10,5 @@ export class Job{
   isStartup:string;
   publishDate:string;
   daysActive:number;
+  is_active:number;
 }

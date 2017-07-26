@@ -23,7 +23,7 @@
 
   <!-- Logged In and show Overview -->
   <div *ngIf="(isloggedIn()==true) &&  (showJobOverview==true)">
-    <app-job-overview ></app-job-overview>
+    <app-job-overview (onShowJobDetails)="onShowJobDetails($event)"></app-job-overview>
   </div>
 
 
@@ -32,10 +32,15 @@
 
 
 
-  <app-create-new-job *ngIf="(isloggedIn()==true)  && (showCreateNewJob==true)"></app-create-new-job>
+  <app-job-detail *ngIf="(isloggedIn()==true)  && (showCreateNewJob==true)"
+  [job]="emptyJob"
+  (onShowJobOverview)="onShowJobOverview($event)" ></app-job-detail>
+
   <!-- Logged In and show Job Details -->
 
-
+  <app-job-detail *ngIf="(isloggedIn()==true)  && (showUpdateJob==true)"
+  [job]="job"
+  (onShowJobOverview)="onShowJobOverview($event)" ></app-job-detail>
 
 
 

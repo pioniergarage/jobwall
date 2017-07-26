@@ -64,6 +64,21 @@ export class HttpService {
     }
 
 
+    updateJob(job:Job): Observable<any[]> {
+      return this.http.put(this.jobUrl+"/"+job.id+"?"+this.authService.getAuthParams(),job)
+        .map(this.generalService.extractData)
+        .catch(this.generalService.handleError);
+    }
+
+
+    toggleJobActive(job:Job): Observable<any[]> {
+      job.is_active = job.is_active == 0 ? 1 : 0;
+      return this.http.put(this.jobUrl+"/"+job.id+"?"+this.authService.getAuthParams(),job)
+        .map(this.generalService.extractData)
+        .catch(this.generalService.handleError);
+    }
+
+
 
   private extractData(res: Response) {
 

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { HttpService } from "../../shared/services/http.service";
+
+import { Job } from "../../shared/classes/job";
 
 @Component({
   selector: 'app-job-overview',
@@ -7,6 +9,15 @@ import { HttpService } from "../../shared/services/http.service";
   styleUrls: ['./job-overview.component.css']
 })
 export class JobOverviewComponent implements OnInit {
+
+
+@Output() onShowJobDetails = new EventEmitter<Job>();
+
+showJobDetails(job:Job){
+  console.log("show");
+  this.onShowJobDetails.emit(job);
+}
+
 
     jobs:any;
     filterArgs:String[] = [];
@@ -34,23 +45,12 @@ export class JobOverviewComponent implements OnInit {
 
 
     removeJob(job){
-
-
-      if (window.confirm("Diesen Job wirklich entgültig löschen?")) { 
-
-
-        console.log("remove: "+job.id);
-
-
+      if (window.confirm("Diesen Job wirklich entgültig löschen?")) {
         this.httpService.deleteJob(job.id)
           .subscribe(deletedJob=>{
-            console.log(deletedJob);
             this.jobs = this.jobs.filter(item => item !== job);
         });
-
-
       }
-
     }
 
 
@@ -81,6 +81,20 @@ export class JobOverviewComponent implements OnInit {
       //console.log(this.showStartup);
       this.updateNgForJobList();
     }
+
+
+    toggleActive(job,index){
+
+      console.log("toggle");
+
+      this.httpService.toggleJobActive(job)
+        .subscribe(updatedJob=>{
+          console.log(this.jobs[index]);
+          this.jobs[index] =  updatedJob;//job.is_active == 0 ? 1 : 0; //= this.jobs.filter(item => item !== job);
+          console.log(this.jobs[index]);
+      });
+    }
+
 
     getJobs(){
       return [];

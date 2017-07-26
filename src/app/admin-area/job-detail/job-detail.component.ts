@@ -1,39 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-
-
+import { Component, OnInit, Input ,Output, EventEmitter } from '@angular/core';
 import { HttpService } from "../../shared/services/http.service";
-
 import { Job } from "../../shared/classes/job";
 
-
-import { DatePickerModule } from 'ng2-datepicker-bootstrap';
-
-
 @Component({
-  selector: 'app-create-new-job',
-  templateUrl: './create-new-job.component.html',
-  styleUrls: ['./create-new-job.component.css']
+  selector: 'app-job-detail',
+  templateUrl: './job-detail.component.html',
+  styleUrls: ['./job-detail.component.css']
 })
-export class CreateNewJobComponent implements OnInit {
+export class JobDetailComponent implements OnInit {
 
+  @Input() job:Job;
 
+  @Output() onShowJobOverview = new EventEmitter<Job>();
 
-  public job:Job;
   availibleJobTypes = [{name:"Praktikum"},{name:"Vollzeitstelle"},{name:"Teilzeitstelle"},{name:"Werkstudentenstelle"},{name:"Thesis"},{name:"Mitgründer"}];
   errorMsg:string ="";
   infoMsg:string ="";
+  submitButtonText:string ="";
+  isCreatePage = true;
+
 
   constructor(private httpService:HttpService) {
-
-    console.log(this.availibleJobTypes);
-    this.job = new Job();
-    this.resetJob();
-
-    console.log(this.job);
-
   }
 
   ngOnInit() {
+    if(!this.job.id){
+      this.resetJob();
+      this.isCreatePage = true;
+      this.submitButtonText = "Neuen Job jetzt eintragen";
+    }
+    else{
+      this.isCreatePage = false;
+      this.submitButtonText = "Job jetzt updaten";
+    }
   }
 
   resetJob(){
@@ -47,11 +46,9 @@ export class CreateNewJobComponent implements OnInit {
     this.job.isStartup  = "";
     this.job.publishDate  = new Date().toJSON().slice(0,10).replace(/-/g,'-'); //"2017-07-25"
     this.job.daysActive= 0;
-
   }
 
-  onCreateNewJob(){
-
+  onSubmitJob(){
     this.errorMsg = "";
 
     if( this.job.title  == "" ||
@@ -68,18 +65,34 @@ export class CreateNewJobComponent implements OnInit {
         }
     if(this.errorMsg == ""){
       console.log(this.job);
-      console.log("save:");;
 
-      this.httpService.createNewJob(this.job)
-        .subscribe(jobList=>{
-        this.infoMsg ="neuerJob eingetragen"
-        this.resetJob();
-        console.log(jobList);
+      if(this.isCreatePage){
+        this.httpService.createNewJob(this.job)
+          .subscribe(jobList=>{
+          this.infoMsg ="neuerJob eingetragen";
+          this.resetJob();
+          console.log(jobList);
+
+
+          this.onShowJobOverview.emit(this.job);
+          });
+      }
+
+      else{
+        this.httpService.updateJob(this.job)
+          .subscribe(updatedJob=>{
+            this.infoMsg ="Job wurde upgedated";
+            console.log(updatedJob);
+
+
+
+            this.onShowJobOverview.emit(this.job);
         });
+      }
+
+
 
     }
-
-
   }
 
 
