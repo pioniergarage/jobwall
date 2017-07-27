@@ -1,23 +1,18 @@
+<div *ngIf="listVisible" class="row" style="font-size:0.9rem;">
+    <div class="col-md-2 col-sm-12"> </div>
+    <div class="col-md-2 col-sm-6"> </div>
+    <div class="col-md-2 col-sm-6"> Kurzbeschreibung </div>
+    <div class="col-md-1 col-sm-3"> Job Typ </div>
+    <div class="col-md-1 col-sm-3"> Veröffent -lichungs -datum </div>
+    <div class="col-md-1 col-sm-2"> Anzahl Tage Aktiv </div>
+    <div class="col-md-1 col-sm-2"> Aktiv </div>
+    <div class="col-md-1 col-sm-2"> Eingestellt </div>
+    <div class="col-md-1 col-sm-12"> </div>
+</div>
 
-
-
-    <div class="row" style="font-size:0.9rem;">
-        <div class="col-md-2 col-sm-12"> </div>
-        <div class="col-md-2 col-sm-6"> </div>
-        <div class="col-md-2 col-sm-6"> Kurzbeschreibung </div>
-        <div class="col-md-1 col-sm-3"> Job Typ </div>
-        <div class="col-md-1 col-sm-3"> Veröffent -lichungs -datum </div>
-        <div class="col-md-1 col-sm-2"> Anzahl Tage Aktiv </div>
-        <div class="col-md-1 col-sm-2"> Aktiv </div>
-        <div class="col-md-1 col-sm-2"> Eingestellt </div>
-        <div class="col-md-1 col-sm-12"> </div>
-    </div>
-
-    <div class="row" *ngFor="let job of jobs; let idx = index">
+<div class="row" *ngFor="let job of jobs; let idx = index">
 
       <hr />
-
-        <!--<app-job-overview-element  [job]="job"></app-job-overview-element>-->
 
         <div class="col-md-2 col-sm-12">
           <div>
@@ -73,4 +68,4 @@
           </button>
         </div>
 
-    </div>
+</div>

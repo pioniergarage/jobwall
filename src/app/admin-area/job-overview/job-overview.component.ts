@@ -19,10 +19,12 @@ showJobDetails(job:Job){
 }
 
 
-    jobs:any;
+    jobs:any[];
     filterArgs:String[] = [];
     showStartup:boolean = true;
     showCorporate:boolean = true;
+    listVisible = false;
+
 
     constructor(private httpService:HttpService) {
 
@@ -32,6 +34,7 @@ showJobDetails(job:Job){
         .subscribe(jobList=>{
         console.log(jobList);
           this.jobs = jobList;
+          this.listVisible= true;
       });
     }
 
