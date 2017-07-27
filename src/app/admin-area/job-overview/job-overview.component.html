@@ -1,61 +1,67 @@
 
 
 
-<table class="table table-striped" style="table-layout: fixed;">
-    <thead style="font-size:0.9rem;">
-      <tr>
-        <th class="col-md-2 .col-sm-4"> </th>
-        <th class="col-md-2 .col-sm-4"> </th>
-        <th class="col-md-2 .col-sm-4"> Kurzbeschreibung </th>
-        <th class="col-md-1 .col-sm-2"> Job Typ </th>
-        <th class="col-md-1 .col-sm-2"> Veröffent -lichungs -datum </th>
-        <th class="col-md-1 .col-sm-2"> Anzahl Tage Aktiv </th>
-        <th class="col-md-1 .col-sm-2"> Aktiv </th>
-        <th class="col-md-1 .col-sm-2"> Eingestellt </th>
-        <th class="col-md-1 .col-sm-2"> </th>
-      </tr>
-    </thead>
-    <tbody>
+    <div class="row" style="font-size:0.9rem;">
+        <div class="col-md-2 col-sm-12"> </div>
+        <div class="col-md-2 col-sm-6"> </div>
+        <div class="col-md-2 col-sm-6"> Kurzbeschreibung </div>
+        <div class="col-md-1 col-sm-3"> Job Typ </div>
+        <div class="col-md-1 col-sm-3"> Veröffent -lichungs -datum </div>
+        <div class="col-md-1 col-sm-2"> Anzahl Tage Aktiv </div>
+        <div class="col-md-1 col-sm-2"> Aktiv </div>
+        <div class="col-md-1 col-sm-2"> Eingestellt </div>
+        <div class="col-md-1 col-sm-12"> </div>
+    </div>
 
-      <tr *ngFor="let job of jobs; let idx = index">
+    <div class="row" *ngFor="let job of jobs; let idx = index">
+
+      <hr />
+
         <!--<app-job-overview-element  [job]="job"></app-job-overview-element>-->
 
-        <td>
+        <div class="col-md-2 col-sm-12">
           <div>
             <a href ="{{ job.linkToJobPage }}">{{ job.id }}: {{ job.title }} </a>
           </div>
-
           <p></p>
           <p>{{ job.locationCityName }}</p>
-        </td>
-        <td>
+        </div>
 
-          <div>
+
+        <div class="col-md-2 col-sm-6">
             <img src="{{ job.companyLogoUrl }}" alt="{{ job.companyName }}_Logo" style="width:120px">
             <div class="caption">
               <h4>{{ job.companyName }}</h4>
               <p *ngIf="job.isStartup==1">Startup</p>
               <p *ngIf="job.isStartup==0" >kein Startup</p>
             </div>
-          </div>
-        </td>
-        <td style="font-size:1rem;">{{ job.shortDescription }}</td>
-        <td style="font-size:1rem; font-weight:500;">{{ job.jobType }}</td>
-        <td style="font-size:0.85rem;">{{ job.publishDate }} </td>
-        <td> {{ job.daysActive }}
+        </div>
 
-        </td>
-        <td class="jobActiveCell" (click)="toggleActive(job,idx)">
+        <div class="col-md-2 col-sm-6" style="font-size:1rem; margin-bottom:2rem;">{{ job.shortDescription }}</div>
+
+        <div class="col-md-1 col-sm-3" style="font-size:1rem; font-weight:500;">{{ job.jobType }}</div>
+
+        <div class="col-md-1 col-sm-3" style="font-size:0.85rem; margin-bottom:2rem;">
+          <i>Eingestellt am:</i><br>
+          {{ job.publishDate }}
+        </div>
+
+        <div class="col-md-1 col-sm-2"> {{ job.daysActive }} </div>
+
+        <div class="col-md-1 col-sm-2 jobActiveCell" (click)="toggleActive(job,idx)" style="padding:20px;">
           <span *ngIf="job.is_active==1" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
           <span *ngIf="job.is_active==0" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </td>
-        <td style="font-size:0.85rem;">
+        </div>
+
+
+        <div class="col-md-1 col-sm-2" style="font-size:0.85rem;">
           <i>Erstellt am:</i><br>
           {{ job.created }}
           <br><br>
           <div *ngIf="job.updated!='0000-00-00 00:00:00'"><i>Updated am:</i><br>{{ job.updated }}</div>
-        </td>
-        <td>
+        </div>
+
+        <div class="col-md-1 col-sm-12">
           <button type="button" class="btn btn-default" style="margin-bottom:2rem;">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"
             (click)="removeJob(job)"></span>
@@ -65,9 +71,6 @@
             <span class="glyphicon glyphicon-resize-full" aria-hidden="true"
             (click)="showJobDetails(job)"></span>
           </button>
+        </div>
 
-      </tr>
-
-
-    </tbody>
-  </table>
+    </div>
