@@ -43,7 +43,7 @@ export class JobDetailComponent implements OnInit {
     this.job.jobType  = "";
     this.job.linkToJobPage  = "";
     this.job.companyLogoUrl = "";
-    this.job.isStartup  = "";
+    this.job.isStartup  = 0;
     this.job.publishDate  = new Date().toJSON().slice(0,10).replace(/-/g,'-'); //"2017-07-25"
     this.job.daysActive = 0;
   }
@@ -97,7 +97,7 @@ export class JobDetailComponent implements OnInit {
 
 
   onChangeJobIsStartup(){
-    this.job.isStartup = this.job.isStartup == "0" ? "1" : "0";
+    this.job.isStartup = this.job.isStartup == 0 ? 1 : 0;
   }
 
 
