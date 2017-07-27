@@ -42,7 +42,11 @@ export class AuthService {
     }
 
     isAuth():boolean{
-      return localStorage.getItem('jw_token')=="" ? false: true;
+      if(localStorage.getItem('jw_token') && localStorage.getItem('jw_token').length>0){
+        return true;
+      }else{
+        return false
+      }
     }
 
 }
