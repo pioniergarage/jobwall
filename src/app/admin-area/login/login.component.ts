@@ -9,7 +9,7 @@ import { AuthService } from '../../shared/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-    private user = {
+    public user = {
       name: "",
       password: ""
     };

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  private img_Logo_PG = 'assets/imgs/PionierGarageLogo-300x67.png'
+  public img_Logo_PG = 'assets/imgs/PionierGarageLogo-300x67.png'
 
   constructor() { }
 
