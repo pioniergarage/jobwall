@@ -80,6 +80,73 @@ export class HttpService {
 
 
 
+
+
+      fileChange(event) {
+          let fileList: FileList = event.target.files;
+          if(fileList.length > 0) {
+              let file: File = fileList[0];
+              let formData:FormData = new FormData();
+              formData.append('uploadFile', file, file.name);
+              let headers = new Headers();
+              /** No need to include Content-Type in Angular 4 */
+              headers.append('Content-Type', 'multipart/form-data');
+              headers.append('Accept', 'application/json');
+              let options = new RequestOptions({ headers: headers });
+              this.http.post("http://pg-api.pioniergarage.de/v1/job/66/uploadFile?token="+this.authService.getAuthParams(), formData, options)
+                  .map(res => res.json())
+                  .catch(error => Observable.throw(error))
+                  .subscribe(
+                      data => console.log('success'),
+                      error => console.log(error)
+                  )
+          }
+      }
+
+
+    uploadFile(formData, jobId): Observable<any[]> {
+
+
+      let headers = new Headers();
+      /** No need to include Content-Type in Angular 4 */
+      headers.append('Content-Type', 'multipart/form-data');
+      headers.append('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+
+
+/*
+
+
+      this.http.post(`${this.apiEndPoint}`, formData, options)
+          .map(res => res.json())
+          .catch(error => Observable.throw(error))
+          .subscribe(
+              data => console.log('success'),
+              error => console.log(error)
+          )
+          */
+      console.log(formData);
+      return this.http.post(this.jobUrl+"/"+jobId+"/uploadFile"+"?"+this.authService.getAuthParams(),formData, options)
+        .map(this.generalService.extractData)
+        .catch(this.generalService.handleError);
+    }
+
+
+/*
+    uploadFile(formData, id) {
+       let headers = this.tokenService.currentAuthHeaders;
+       headers.delete('Content-Type');
+       let options = new RequestOptions({ headers: headers });
+
+       return this.tokenService.request({
+         method: 'post',
+         url: `http://localhost:3000/api/projects/${id}/upload`,
+         body: formData,
+         headers: options.headers
+       }).map(res => res.json());
+     }
+*/
+
   private extractData(res: Response) {
 
     let body = res.json();
