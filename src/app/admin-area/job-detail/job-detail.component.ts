@@ -1,7 +1,7 @@
 import { Component, OnInit, Input ,Output, EventEmitter, ViewChild } from '@angular/core';
 import { HttpService } from "../../shared/services/http.service";
 import { Job } from "../../shared/classes/job";
-import { FileUploader } from 'ng2-file-upload';
+import { FileUploader, ParsedResponseHeaders, FileItem} from 'ng2-file-upload';
 
 
 
@@ -72,6 +72,14 @@ export class JobDetailComponent implements OnInit {
     this.uploader.onBeforeUploadItem = (item) => {
       item.withCredentials = false;
     }
+
+    this.uploader.onSuccessItem = (item:FileItem, response:string, status:number, headers:ParsedResponseHeaders) => {
+
+
+    this.job.linkToJobPage  = "http://pg-api.pioniergarage.de/data/jobwall-files/"+this.job.id+".pdf";
+
+    console.log("onSuccessItem " + status, item);
+  }
 
   }
 
@@ -148,19 +156,7 @@ export class JobDetailComponent implements OnInit {
 
   fileChange(event) {
     this.httpService.fileChange(event);
-    /*
-      let fileList: FileList = event.target.files;
-      if(fileList.length > 0) {
-          let file: File = fileList[0];
-          let formData:FormData = new FormData();
-          formData.append('uploadFile', file, file.name);
 
-          this.httpService.uploadFile(formData, this.job.id).subscribe(res => {
-            // do stuff w/my uploaded file
-          });
-
-      }
-      */
 
   }
 
