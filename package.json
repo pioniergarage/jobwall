@@ -1,6 +1,6 @@
 {
-  "name": "ng2-wordpress-test",
-  "version": "0.0.0",
+  "name": "jobwall",
+  "version": "1.0.1",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
