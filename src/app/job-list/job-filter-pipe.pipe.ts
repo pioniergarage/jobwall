@@ -21,21 +21,21 @@ export class JobFilterPipePipe implements PipeTransform {
       //If there is no arg like [Praktikum,Thesis]
       if(!args||args.length<1)
       {
-        if(oldJob.isStartup && showStartup){ this.editedJobs.push(oldJob); }
-        if(!oldJob.isStartup && showCorporate){ this.editedJobs.push(oldJob); }
+        if(oldJob.isStartup==1 && showStartup){ this.editedJobs.push(oldJob); }
+        if(oldJob.isStartup==0 && showCorporate){ this.editedJobs.push(oldJob); }
       }
       else{
         for(let jobType of args){
           //Add Startups, if showStartup is true
           if( oldJob.jobType.toUpperCase() == jobType.toUpperCase()&&
-              oldJob.isStartup && showStartup )
+              oldJob.isStartup==1 && showStartup )
           {
             console.log("startups: "+oldJob.isStartup+" - "+showStartup);
             this.editedJobs.push(oldJob);
           }
           //Add Corporates, if showCorporate is true
           if( oldJob.jobType.toUpperCase() == jobType.toUpperCase()&&
-            !oldJob.isStartup && showCorporate )
+            oldJob.isStartup==0 && showCorporate )
           {
             console.log("corporate: "+!oldJob.isStartup+" - "+showCorporate);
             this.editedJobs.push(oldJob);

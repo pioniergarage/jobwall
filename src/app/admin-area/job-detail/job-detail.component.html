@@ -57,8 +57,86 @@
       <input type="linkToJobPage" class="form-control" id="linkToJobPage"
         required
         [(ngModel)]="job.linkToJobPage" name="linkToJobPage">
+        <p *ngIf="isCreatePage" style="font-size:0.9rem; font-style:italics; color: #4d0000;">
+          Eigene Daten können erst <b>nachdem</b> ein Eintrag erstellt wurde über den Update-Bereich hochgeladen werden.
+        </p>
     </div>
   </div>
+
+  <div *ngIf="!isCreatePage" class="form-group">    <!-- upload area -->
+    <label class="control-label col-sm-4"  for="fileForUpload">PDF für die Jobanzeige</label>
+    <div class="col-sm-8">
+
+            <div class="col-md-3">
+                <div ng2FileDrop
+                     [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                     (fileOver)="fileOverBase($event)"
+                     [uploader]="uploader"
+                     class="well my-drop-zone">
+                    Lege die PDF Datei hier ab
+                </div>
+
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                  <span class="btn btn-primary btn-file">
+                    <span class="fileupload-new">PDF auswählen</span>
+                    <span class="fileupload-exists">Change</span>
+
+
+                    <input class="btn btn" type="file" ng2FileSelect [uploader]="uploader" />
+
+                    </span>
+                  <span class="fileupload-preview"></span>
+                  <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                </div>
+            </div>
+
+            <div  class="col-md-9" style="margin-bottom: 40px">
+
+                <h3>Upload</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th width="50%">Name</th>
+                        <th>Hochgeladen</th>
+                        <th>Progress</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of uploader.queue">
+                        <td><strong>{{ item?.file?.name }}</strong></td>
+                        <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                        <td *ngIf="uploader.isHTML5">
+                            <div class="progress" style="margin-bottom: 0;">
+                                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                            <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                            <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                        </td>
+                        <td nowrap>
+                            <button type="button" class="btn btn-success btn-xs"
+                                    (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                <span class="glyphicon glyphicon-upload"></span> Upload
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs"
+                                    (click)="item.remove()">
+                                <span class="glyphicon glyphicon-trash"></span> Remove
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size:0.9rem; font-style:italics; color: #4d0000;">
+              Bitte nur PDFs hochladen.
+            </p>
+    </div>
+  </div>  <!-- end upload area -->
+
 
   <div class="form-group">
     <label class="control-label col-sm-4"  for="companyLogoUrl">Link zum Unternehmenslogo</label>

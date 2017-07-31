@@ -7,7 +7,7 @@ export class Job{
   jobType:string;
   linkToJobPage:string;
   companyLogoUrl:string;
-  isStartup:string;
+  isStartup:number;
   publishDate:string;
   daysActive:number;
   is_active:number;

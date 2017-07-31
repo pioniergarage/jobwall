@@ -18,6 +18,9 @@ import { LoginComponent } from './admin-area/login/login.component';
 import { JobDetailComponent } from './admin-area/job-detail/job-detail.component';
 
 
+import { FileUploadModule } from "ng2-file-upload";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +36,8 @@ import { JobDetailComponent } from './admin-area/job-detail/job-detail.component
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    FileUploadModule
   ],
   providers: [HttpService, JobListService, AuthService, GeneralService],
   bootstrap: [AppComponent]
